@@ -7,8 +7,7 @@ use app::App;
 use crossbeam_channel;
 
 fn main() {
-    let mut app = App::default();
-    /* let (sender, receiver) = crossbeam_channel::unbounded(); */
+    let app = App::default();
     eframe::run_native(Box::new(app), epi::NativeOptions {
         always_on_top: false,
         decorated: true,
