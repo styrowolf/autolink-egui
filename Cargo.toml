@@ -1,0 +1,18 @@
+[package]
+name = "autolink-egui"
+version = "0.1.0"
+authors = ["Oğuz Kurt <kurt.oguz@outlook.com>"]
+edition = "2018"
+description = "a simple app to open links at the right time"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+eframe = "0.12.0"
+autolink-lib = { path = "../autolink-lib/" }
+home = "0.5.3"
+crossbeam-channel = "0.5.1"
+
+[package.metadata.bundle]
+name = "autolink"
+identifier = "io.github.styrowolf.autolink"
