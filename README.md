@@ -8,6 +8,12 @@ autolink is built and packaged via cargo and cargo-bundle respectively.
 
 * A local dependency called autolink-lib is not yet put onto Github but will be put shortly.
 
+Clone autolink-lib to the parent directory
+
+```
+git clone https://github.com/styrowolf/autolink-lib.git
+```
+
 Building autolink
 
 ```
