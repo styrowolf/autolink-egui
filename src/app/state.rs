@@ -86,6 +86,27 @@ pub struct EditUIState {
     pub output: String,
 }
 
+impl EditUIState {
+    pub fn refresh(&mut self, r: std::ops::Range<usize>) {
+        let mut new = Self::default();
+        new.selection = self.selection;
+        new.prev_selection = Self::prev_selection_generate(r, self.selection);
+        *self = new;
+    }
+
+    fn prev_selection_generate(r: std::ops::Range<usize>, not: usize) -> usize {
+        let mut prev_sel = 0;
+        for i in r {
+            if i != not {
+                prev_sel = i;
+                break
+            } 
+        }
+        prev_sel
+    }
+}
+
+
 
 impl Default for EditUIState {
     fn default() -> Self {

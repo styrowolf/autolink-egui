@@ -197,7 +197,7 @@ impl epi::App for App {
                                 plans.as_mut_slice()[self.state.edit.selection] = self.state.edit.plan.clone();
                                 drop(plans);
                                 let name = self.state.edit.plan.name.clone();
-                                self.state.edit = EditUIState::default();
+                                self.state.edit.refresh(0..self.plans.lock().unwrap().len());
                                 self.state.edit.output = format!("entry {} has been edited", name);
                                 let _ = self.sender.send(false);
                                 let _ = self.sender.send(true);
