@@ -6,8 +6,6 @@ A simple app to open links at the right time.
 
 autolink is built and packaged via cargo and cargo-bundle respectively.
 
-* A local dependency called autolink-lib is not yet put onto Github but will be put shortly.
-
 Clone autolink-lib to the parent directory
 
 ```
