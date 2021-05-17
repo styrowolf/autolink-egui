@@ -133,8 +133,10 @@ impl epi::App for App {
                             let name = self.state.add.name.clone();
                             self.state.add = AddUIState::default();
                             self.state.add.output = format!("entry {} has been added", name);
-                            let _ = self.sender.send(false);
-                            let _ = self.sender.send(true);
+                            if self.is_loop_running {
+                                let _ = self.sender.send(false);
+                                let _ = self.sender.send(true);
+                            }
                         } else {
                             self.state.add.output = String::from("both name and link must be entered!");
                         }
@@ -200,8 +202,10 @@ impl epi::App for App {
                                 let name = self.state.edit.plan.name.clone();
                                 self.state.edit.refresh(0..self.plans.lock().unwrap().len());
                                 self.state.edit.output = format!("entry {} has been edited", name);
-                                let _ = self.sender.send(false);
-                                let _ = self.sender.send(true);
+                                if self.is_loop_running {
+                                    let _ = self.sender.send(false);
+                                    let _ = self.sender.send(true);
+                                }
                             } else {
                                 self.state.edit.output = format!("both name and link must be entered!");
                             }
@@ -219,8 +223,10 @@ impl epi::App for App {
                             let Plan {name, .. } = plans.remove(self.state.remove.selection);
                             self.state.remove = RemoveUIState::default();
                             self.state.remove.output = format!("entry {} has been removed", name);
-                            let _ = self.sender.send(false);
-                            let _ = self.sender.send(true);
+                            if self.is_loop_running {
+                                let _ = self.sender.send(false);
+                                let _ = self.sender.send(true);
+                            }
                             ui.add(egui::widgets::Label::new(self.state.remove.output.clone()).wrap(true));
                         }
                     }
