@@ -247,8 +247,10 @@ impl epi::App for App {
                         is_running = receiver.recv().unwrap();
                         if is_running {
                             let v = plans.lock().unwrap();
+                            p = Vec::new();
                             p.extend_from_slice(&*v);
                             drop(v); // explicitly dropping v preemptively, I'm using mutexes for the first time and I don't want to go crazy
+                            cp = Vec::new();
                             cp.extend_from_slice(&p);
                         }
                     }
