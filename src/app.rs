@@ -4,6 +4,7 @@ use autolink_lib::{Plan, TimeDay};
 use crossbeam_channel;
 use autolink_lib::chrono;
 use chrono::{Datelike, Timelike};
+use std::iter::FromIterator;
 
 mod utils;
 mod state;
@@ -247,11 +248,9 @@ impl epi::App for App {
                         is_running = receiver.recv().unwrap();
                         if is_running {
                             let v = plans.lock().unwrap();
-                            p = Vec::new();
-                            p.extend_from_slice(&*v);
+                            p = Vec::from_iter(v.clone());
                             drop(v); // explicitly dropping v preemptively, I'm using mutexes for the first time and I don't want to go crazy
-                            cp = Vec::new();
-                            cp.extend_from_slice(&p);
+                            cp = Vec::from_iter(p.clone());
                         }
                     }
                     if is_running {
